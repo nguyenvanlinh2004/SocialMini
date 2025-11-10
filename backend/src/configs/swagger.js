@@ -7,7 +7,7 @@ const options = {
     info: {
       title: "Social API Documentation",
       version: "1.0.0",
-      description: "API cho ứng dụng mạng xã hội (User, Post, Comment, Friend, Auth)",
+      description: "API cho ứng dụng mạng xã hội (User, Post, Comment, Friend, Auth, Messages, Converstaions)",
     },
     servers: [
       {

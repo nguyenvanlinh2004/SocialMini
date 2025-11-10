@@ -7,7 +7,7 @@ const conversationSchema = new mongoose.Schema(
         isGroup: { type: Boolean, default: false },
         groupName: String,
         groupAvatarUrl: String,
-        groupAvatarId
+        groupAvatarId: String,
     },
     { timestamps: true }
 );

@@ -7,6 +7,8 @@ import userRoute from './modules/user/user.route.js'
 import friendRoute from './modules/friend/friend.route.js'
 import postRoute from './modules/post/post.route.js'
 import commentRoute from './modules/comment/comment.route.js'
+import conversationRoute from './modules/conversation/conversation.route.js'
+import messageRoute from './modules/message/message.route.js'
 import { protectedRoute } from "./middlewares/authMiddleware.js";
 import cookieParser from 'cookie-parser'
 
@@ -19,7 +21,15 @@ const PORT = process.env.PORT || 5001;
 app.use(express.json());
 app.use(cookieParser());
 
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use(
+  "/api-docs",
+  swaggerUi.serve,
+  swaggerUi.setup(swaggerSpec, {
+    swaggerOptions: {
+      defaultModelsExpandDepth: 0, // Thu gọn phần Schemas mặc định
+    },
+  })
+);
 
 //public routes
 app.use('/api/auth', authRoute);
@@ -30,6 +40,8 @@ app.use('/api/users', userRoute);
 app.use('/api/friends', friendRoute);
 app.use('/api/posts', postRoute);
 app.use('/api/comments', commentRoute);
+app.use('/api/conversations',conversationRoute);
+app.use('/api/messages', messageRoute);
 
 
 
