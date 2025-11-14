@@ -11,10 +11,7 @@ const options = {
     },
    servers: [
   {
-    url: "http://localhost:5001",
-  },
-  {
-    url: "https://socialmini-2.onrender.com",
+    url: process.env.BASE_URL || "http://localhost:5001",
   },
 ],
     components: {
