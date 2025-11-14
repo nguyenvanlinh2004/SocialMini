@@ -9,11 +9,14 @@ const options = {
       version: "1.0.0",
       description: "API cho ứng dụng mạng xã hội (User, Post, Comment, Friend, Auth, Messages, Converstaions)",
     },
-    servers: [
-      {
-        url: "http://localhost:5001",
-      },
-    ],
+   servers: [
+  {
+    url: "http://localhost:5001",
+  },
+  {
+    url: "https://socialmini-2.onrender.com",
+  },
+],
     components: {
       securitySchemes: {
         bearerAuth: {
