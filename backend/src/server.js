@@ -1,4 +1,5 @@
 import express from "express";
+import cors from 'cors';
 import dotenv from "dotenv";
 import { swaggerUi, swaggerSpec } from "./configs/swagger.js";
 import { connectDB } from "./configs/db.js";
@@ -17,6 +18,8 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 5001;
 
+// cors
+app.use(cors());
 // middlewarees
 app.use(express.json());
 app.use(cookieParser());
@@ -43,7 +46,9 @@ app.use('/api/comments', commentRoute);
 app.use('/api/conversations',conversationRoute);
 app.use('/api/messages', messageRoute);
 
-
+app.get('/', (req, res) => {
+  res.redirect('/api-docs');
+});
 
 connectDB().then(() => {
   app.listen(PORT, () => {
