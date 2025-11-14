@@ -17,6 +17,7 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5001;
+const BASE_URL= process.env.BASE_URL || 'http://localhost:5001'
 
 // cors
 app.use(cors({
@@ -58,7 +59,7 @@ app.get('/', (req, res) => {
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server chạy trên cổng ${PORT}`);
-     console.log(`Swagger UI: ${process.env.BASE_URL ||""}/api-docs`);
+     console.log(`Swagger UI: ${BASE_URL}`);
   });
 }).catch((err) => {
   console.error("Không thể khởi động server vì lỗi DB:", err.message);
