@@ -21,7 +21,10 @@ const BASE_URL= process.env.BASE_URL || 'http://localhost:5001'
 
 // cors
 app.use(cors({
-  origin: 'http://localhost:3000',
+  origin: [
+    'http://localhost:3000',
+    'https://your-render-app.onrender.com'
+  ],
   credentials: true,
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
