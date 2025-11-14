@@ -53,7 +53,7 @@ app.get('/', (req, res) => {
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server chạy trên cổng ${PORT}`);
-     console.log(`Swagger UI: http://localhost:${PORT}/api-docs`);
+     console.log(`Swagger UI: ${process.env.BASE_URL ||""}/api-docs`);
   });
 }).catch((err) => {
   console.error("Không thể khởi động server vì lỗi DB:", err.message);
