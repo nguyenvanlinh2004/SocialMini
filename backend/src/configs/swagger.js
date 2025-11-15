@@ -7,13 +7,13 @@ const options = {
     info: {
       title: "Social API Documentation",
       version: "1.0.0",
-      description: "API cho ứng dụng mạng xã hội (User, Post, Comment, Friend, Auth, Messages, Converstaions)",
+      description: "API cho ứng dụng mạng xã hội",
     },
-   servers: [
-  {
-    url: process.env.BASE_URL || "http://localhost:5001",
-  },
-],
+    servers: [
+      {
+        url: process.env.BASE_URL || "http://localhost:5001",
+      },
+    ],
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -23,14 +23,11 @@ const options = {
         },
       },
     },
-    security: [
-      {
-        bearerAuth: [],
-      },
-    ],
+    security: [{ bearerAuth: [] }],
   },
-  apis: ["./src/modules/**/*.route.js"], // nơi chứa mô tả API (sẽ viết ở bước 3)
+  apis: ["./src/modules/**/*.route.js"],
 };
+
 
 const swaggerSpec = swaggerJSDoc(options);
 

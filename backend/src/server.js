@@ -20,13 +20,19 @@ const PORT = process.env.PORT || 5001;
 const BASE_URL= process.env.BASE_URL || 'http://localhost:5001'
 
 // cors
+// const allowedOrigins = [
+//   'http://localhost:3000',
+//   'https://socialmini-2.onrender.com',   // thêm domain thật vào
+//   process.env.BASE_URL
+// ];
+
 app.use(cors({
-  origin: [
-    '*'
-    ],
-  credentials: true,
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: "*",
+  methods: ["GET","POST","PUT","DELETE","PATCH","OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true
 }));
+
 
 // middlewarees
 app.use(express.json());
@@ -61,7 +67,7 @@ app.get('/', (req, res) => {
 connectDB().then(() => {
   app.listen(PORT, () => {
     console.log(`Server chạy trên cổng ${PORT}`);
-     console.log(`Swagger UI: ${BASE_URL}`);
+     console.log(`Swagger UI: ${BASE_URL}/api-docs`);
   });
 }).catch((err) => {
   console.error("Không thể khởi động server vì lỗi DB:", err.message);
