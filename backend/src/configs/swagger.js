@@ -9,11 +9,14 @@ const options = {
       version: "1.0.0",
       description: "API cho ứng dụng mạng xã hội",
     },
+
+    // ⚠ PHẢI ĐÚNG VỊ TRÍ NÀY — NGAY SAU info, KHÔNG LỆCH NGOẶC
     servers: [
       {
         url: process.env.BASE_URL || "http://localhost:5001",
       },
     ],
+
     components: {
       securitySchemes: {
         bearerAuth: {
@@ -25,9 +28,9 @@ const options = {
     },
     security: [{ bearerAuth: [] }],
   },
+
   apis: ["./src/modules/**/*.route.js"],
 };
-
 
 const swaggerSpec = swaggerJSDoc(options);
 
