@@ -1,5 +1,4 @@
 import { Button } from "@/app/(shared)/components/ui/button";
-import React from "react";
 
 const AuthBox = () => {
   return (

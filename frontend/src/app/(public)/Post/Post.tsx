@@ -1,10 +1,9 @@
-import type { PostType } from "@/app/types/Post";
+import type { Post } from "../../../../store/post/post.types";
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { Heart, MessageCircle } from "lucide-react";
-import { MoreHorizontal } from "lucide-react";
+import { Heart, MessageCircle, MoreHorizontal } from "lucide-react";
 
 type PostProps = {
-  post: PostType;
+  post: Post;
 };
 
 export default function Post({ post }: PostProps) {
@@ -13,40 +12,53 @@ export default function Post({ post }: PostProps) {
       <div className="flex gap-3">
         {/* avatar */}
         <Avatar className="flex-none my-1">
-          <AvatarImage src={post.user.avatar} />
+          <AvatarImage src={post.userId.avatarUrl} />
         </Avatar>
+
         <div className="w-full">
-          {/* ten, noi dung */}
+          {/* tên + thời gian */}
           <div className="mb-3 overflow-hidden">
             <div className="flex justify-between gap-3">
               <div>
                 <span className="font-semibold hover:underline">
-                  {post.user.name}{" "}
+                  {post.userId.displayName}
                 </span>
-                <span className="text-[#999999]">
-                  {post.createdAt.toString()}
+
+                <span className="text-[#999999] ml-2">
+                  {new Date(post.createdAt).toLocaleString()}
                 </span>
               </div>
+
               <div className="w-10 flex justify-end">
                 <button className="p-1 rounded-full hover:bg-gray-200 transition-colors duration-200">
                   <MoreHorizontal className="w-5 h-5" />
                 </button>
               </div>
             </div>
+
+            {/* nội dung */}
             <span>{post.content}</span>
-            <img src={post.user.avatar} alt="asdadsa" />
+
+            {/* ảnh */}
+            {post.imageUrl?.length > 0 && (
+              <img
+                src={post.imageUrl[0]}
+                alt="post image"
+                className="mt-2 rounded-lg max-h-96 object-cover"
+              />
+            )}
           </div>
-          {/* button */}
-          <div className="">
-            <div className="flex gap-6">
-              <div className="flex p-1 rounded-full hover:bg-gray-200 transition-colors duration-200 ">
-                <Heart />
-                <span className="mx-1">{post.stats.likes}</span>
-              </div>
-              <div className="flex p-1 rounded-full hover:bg-gray-200 transition-colors duration-200">
-                <MessageCircle />
-                <span className="mx-1">2131</span>
-              </div>
+
+          {/* Like + Comment */}
+          <div className="flex gap-6">
+            <div className="flex p-1 rounded-full hover:bg-gray-200 transition-colors duration-200">
+              <Heart className="w-5 h-5" />
+              <span className="mx-1">{post.likes.length}</span>
+            </div>
+
+            <div className="flex p-1 rounded-full hover:bg-gray-200 transition-colors duration-200">
+              <MessageCircle className="w-5 h-5" />
+              <span className="mx-1">2131</span>
             </div>
           </div>
         </div>
